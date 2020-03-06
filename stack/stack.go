@@ -4,19 +4,20 @@ import "strconv"
 
 type stack interface {
 	//Add to stack
-	push() string
+	Push() string
 	//Return last pushed
-	top() string
+	Top() string
 	//Delete from stack the one on top
-	pop() string
+	Pop() string
 	//Says if stack is empty
-	is_empty() bool
+	Isempty() bool
 	//Says stack size
-	get_size() int
+	Getsize() int
 }
 
-type ints struct {
-	x int
+//Ints : int data type
+type Ints struct {
+	X int
 }
 
 type strings struct {
@@ -27,21 +28,42 @@ type structs struct {
 	x struct{}
 }
 
-var intsArr []ints
+var intsArr []Ints
 var stringsArr []strings
 var structsArr []struct{}
 
-func (i ints) push() string {
-	number := strconv.Itoa(i.x)
+//Push : Add an int to the stack
+func (i Ints) Push() string {
+	number := strconv.Itoa(i.X)
 	intsArr = append(intsArr, i)
 	return "Pushed " + number
 }
 
-func (i ints) top() string {
+//Top : Show the las element inserted in the stack
+func (i Ints) Top() string {
 	length := len(intsArr)
-
+	number := strconv.Itoa(intsArr[length-1].X)
+	return number
 }
 
-func (i ints) pop() string {
-	return "TODO"
+//Pop : Delete the top element inserted in the stack
+func (i Ints) Pop() string {
+	length := len(intsArr)
+	popped := strconv.Itoa(intsArr[length-1].X)
+	intsArr = intsArr[:length-1]
+	return popped
+}
+
+//IsEmpty : returns true is stack is empty else it returns false
+func (i Ints) IsEmpty() bool {
+	if len(intsArr) == 0 {
+		return true
+	}
+	return false
+}
+
+//GetSize : retuns the size of the stack
+func (i Ints) GetSize() string {
+	size := len(intsArr)
+	return strconv.Itoa(size)
 }

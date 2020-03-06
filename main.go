@@ -1,18 +1,32 @@
 package main
 
-import "fmt"
-
-var arr []int
+import (
+	s "Stack/stack"
+	"fmt"
+	"strconv"
+)
 
 func main() {
-	arr = append(arr, 1)
-	arr = append(arr, 4)
 
-	lengh := len(arr)
+	t := s.Ints{X: 6}
 
-	for index, x := range arr {
-		fmt.Println(index, x)
-	}
-	fmt.Println(lengh)
+	s.Ints.Push(t)
+
+	t.X = 4
+	s.Ints.Push(t)
+
+	t.X = 1
+	s.Ints.Push(t)
+
+	t.X = 9
+	s.Ints.Push(t)
+
+	u := s.Ints{X: 120}
+
+	s.Ints.Pop(t)
+	s.Ints.Push(u)
+	fmt.Println("Top: " + s.Ints.Top(u))
+	fmt.Println("Is it empty? " + strconv.FormatBool(s.Ints.IsEmpty(t)))
+	fmt.Println("Size: " + s.Ints.GetSize(u))
 
 }
