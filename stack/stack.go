@@ -5,17 +5,17 @@ import (
 	"strconv"
 )
 
-type stack interface {
+type funcs interface {
 	//Add to stack
-	Push() string
+	Push()
 	//Return last pushed
-	Top() string
+	Top()
 	//Delete from stack the one on top
-	Pop() string
+	Pop()
 	//Says if stack is empty
-	Isempty() bool
+	Isempty()
 	//Says stack size
-	Getsize() int
+	Getsize()
 }
 
 //Ints : int data type
@@ -28,14 +28,27 @@ type Strings struct {
 	X string
 }
 
-//Data : Any data type can be stored here
-type Data struct {
-	X interface{}
-}
-
 var intsArr []Ints
 var stringsArr []Strings
-var dataArr []Data
+
+//Elem : Is going to be where we store our data
+type Elem interface{}
+
+//Stack : Defining the data type
+type Stack struct {
+	data []Elem
+}
+
+//NewStack : To start a stack
+func NewStack() Stack {
+	st := Stack{}
+	return st
+}
+
+//Push : Add a data to the stack
+func (i *Stack) Push(e Elem) {
+	i.data = append(i.data, e)
+}
 
 //Push : Add an int to the stack
 func (i Ints) Push() string {
@@ -48,6 +61,15 @@ func (i Ints) Push() string {
 func (i Strings) Push() string {
 	stringsArr = append(stringsArr, i)
 	return stringsArr[len(stringsArr)-1].X
+}
+
+//IsEmpty : returns true is stack is empty else it returns false
+func (i *Stack) IsEmpty() bool {
+	if len(i.data) == 0 {
+		return true
+	}
+
+	return false
 }
 
 //IsEmpty : returns true is stack is empty else it returns false
@@ -64,6 +86,14 @@ func (i Strings) IsEmpty() bool {
 		return true
 	}
 	return false
+}
+
+//Top : Show the las element inserted in the stack
+func (i *Stack) Top() (Elem, error) {
+	if i.IsEmpty() {
+		return "", errors.New("Stack is empty")
+	}
+	return i.data[len(i.data)-1], nil
 }
 
 //Top : Show the las element inserted in the stack
@@ -86,11 +116,22 @@ func (i Strings) Top() (string, error) {
 }
 
 //Pop : Delete the top element inserted in the stack
+func (i *Stack) Pop() (Elem, error) {
+	if i.IsEmpty() {
+		return "", errors.New("Stack is empty")
+	}
+	popped := i.data[len(i.data)-1]
+	i.data = i.data[:len(i.data)-1]
+	return popped, nil
+}
+
+//Pop : Delete the top element inserted in the stack
 func (i Ints) Pop() (string, error) {
 	if Ints.IsEmpty(i) {
 		return "", errors.New("Stack is empty")
 	}
 	length := len(intsArr)
+
 	popped := strconv.Itoa(intsArr[length-1].X)
 	intsArr = intsArr[:length-1]
 	return popped, nil
@@ -106,7 +147,13 @@ func (i Strings) Pop() (string, error) {
 	return popped, nil
 }
 
-//GetSize : retuns the size of the stack
+//GetSize : returns the size of the stack
+func (i *Stack) GetSize() int {
+	size := len(i.data)
+	return size
+}
+
+//GetSize : returns the size of the stack
 func (i Ints) GetSize() int {
 	size := len(intsArr)
 	return size
