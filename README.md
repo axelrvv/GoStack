@@ -10,7 +10,7 @@ All functions of a stack data structure
 
 Now you can use them in go
 
-## Usage
+# Usage
 ```Go
 package main
 
@@ -39,13 +39,13 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(Top) 
+	fmt.Println(Top)
 	//Returns 400
 	fmt.Println(stk.GetSize())
 	//Returns 4
 
 	Popped, _ := stk.Pop()
-	fmt.Println(Popped) 
+	fmt.Println(Popped)
 	//Returns 400
 
 	Top, _ = stk.Top()
@@ -54,5 +54,15 @@ func main() {
 
 	fmt.Println(stk.GetSize())
 	//Returns 3
-}
+
+	//Output
+	// True
+	// False
+	// 400
+	// 4
+	// 400
+	// 300
+	// 3
 ```
+# Download
+go get github.com/axelrvv/GoStack
