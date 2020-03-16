@@ -72,7 +72,7 @@ False
 */
 
 ```
-*To make the list receptive for any datatype we deal with interfaces, it's important to know how to do interface assertion when you're storing a struct in the list*
+*To make the stack receptive for any datatype we deal with interfaces, it's important to know how to do interface assertion when you're storing a struct in the stack*
 
 ### Example
 
