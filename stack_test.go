@@ -134,3 +134,40 @@ func TestGetSize(t *testing.T) {
 		}
 	}
 }
+
+/*
+Output
+
+=== RUN   TestNewStack
+--- PASS: TestNewStack (0.00s)
+=== RUN   TestPush
+=== RUN   TestPush/10,1
+=== RUN   TestPush/%!d(string=Test),2
+=== RUN   TestPush/%!d(bool=true),3
+--- PASS: TestPush (0.00s)
+    --- PASS: TestPush/10,1 (0.00s)
+    --- PASS: TestPush/%!d(string=Test),2 (0.00s)
+    --- PASS: TestPush/%!d(bool=true),3 (0.00s)
+=== RUN   TestPopWhenStactEmpty
+--- PASS: TestPopWhenStactEmpty (0.00s)
+=== RUN   TestPop
+=== RUN   TestPop/Pop_0
+=== RUN   TestPop/Pop_1
+=== RUN   TestPop/Pop_2
+--- PASS: TestPop (0.00s)
+    --- PASS: TestPop/Pop_0 (0.00s)
+    --- PASS: TestPop/Pop_1 (0.00s)
+    --- PASS: TestPop/Pop_2 (0.00s)
+=== RUN   TestIsEmpty
+--- PASS: TestIsEmpty (0.00s)
+=== RUN   TestTopWhenStackEmpty
+--- PASS: TestTopWhenStackEmpty (0.00s)
+=== RUN   TestTop
+--- PASS: TestTop (0.00s)
+=== RUN   TestGetSizeWhenStackEmpty
+--- PASS: TestGetSizeWhenStackEmpty (0.00s)
+=== RUN   TestGetSize
+--- PASS: TestGetSize (0.00s)
+PASS
+ok      Stack   0.634s
+*/
