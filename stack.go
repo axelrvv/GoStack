@@ -43,8 +43,7 @@ func (i *Stack) IsEmpty() bool {
 	}
 
 	return false
-}
-
+}//This is to test circle ci
 //Top : Show the las element inserted in the stack
 func (i *Stack) Top() (Elem, error) {
 	if i.IsEmpty() {
